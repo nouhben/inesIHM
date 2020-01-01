@@ -38,7 +38,7 @@ public class SignupFrame extends JFrame implements ActionListener {
         private JTextField emailField = new JTextField();
 
          /***** BUTTONS ****/
-        private JButton loginButton= new JButton("Signup");
+        private JButton loginButton= new JButton("Sign up");
         private JButton exitButton = new JButton("Reset");
         private JCheckBox showPasswordCheckBox= new JCheckBox("Show Password");
 
@@ -71,7 +71,7 @@ public class SignupFrame extends JFrame implements ActionListener {
             emailLabel.setBounds(50,250,width,height);
             emailField.setBounds(50,250+height,width*2,height);
 
-            phone_mail_error.setBounds(250,260+height,width,height);
+            phone_mail_error.setBounds(150,250+height*2,width*2,height);
 
             phoneLabel.setBounds(50,350,width* 2,height);
             phoneField.setBounds(50,350+height+10,width * 2,height);
@@ -138,7 +138,8 @@ public class SignupFrame extends JFrame implements ActionListener {
 
             Object []labels={firstNameLabel,lastNameLabel,userNameLabel,
                     emailLabel, phoneLabel,passwordLabel,confirmPasswordLabel,
-                    confirmPasswordError,passwordError,usernameError,lastNameError,firstNameError
+                    confirmPasswordError,passwordError,usernameError,lastNameError,
+                    firstNameError,phone_mail_error
             };
             for (Object o : labels) {
                 JLabel label = (JLabel) (o);
@@ -165,9 +166,11 @@ public class SignupFrame extends JFrame implements ActionListener {
                 }
 
                 if(userInputs.get("email").isEmpty() && userInputs.get("phone").isEmpty()){
-                    phone_mail_error.setText("Email or Phone must not be Empty");
+                    phone_mail_error.setText(". Email or Phone must not be Empty");
                     is_field_correct.replace("email",false);
                     is_field_correct.replace("phone",false);
+                }else {
+                    phone_mail_error.setText("");
                 }
 
                 if (userInputs.get("password").isEmpty()){
@@ -214,7 +217,16 @@ public class SignupFrame extends JFrame implements ActionListener {
                 }
             }
             if (e.getSource() == exitButton){
-                //do nothing
+                userNameField.setText("");
+                firstNameError.setText("");
+                usernameError.setText("");
+                lastNameError.setText("");
+                lastNameField.setText("");
+                phone_mail_error.setText("");
+                phoneField.setText("");
+                emailField.setText("");
+                passwordError.setText("");
+                passwordField.setText("");
             }
         }
 
@@ -235,8 +247,8 @@ public class SignupFrame extends JFrame implements ActionListener {
 
         private HashMap<String, Boolean> init(){
             HashMap<String, Boolean> is_field_correct = new HashMap<>();
-            //is_field_correct.put("first_name",true);
-            //is_field_correct.put("last_name",true);
+            is_field_correct.put("first_name",true);
+            is_field_correct.put("last_name",true);
             is_field_correct.put("user_name",true);
             is_field_correct.put("phone",true);
             is_field_correct.put("email",true);
