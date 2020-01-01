@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class IHMLogin {
+public class MainApp {
     public static void main(String[] args) throws Exception{
         LoginFrame frame = new LoginFrame();
         SignupFrame signupFrame= new SignupFrame();
